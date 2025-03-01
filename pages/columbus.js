@@ -10,20 +10,27 @@ import dynamic from 'next/dynamic'
 const schedinprog = [{ time: 'XX:XX', event: 'SCHEDULE IN PROGRESS' }]
 
 const schedule = [
-  { time: '11:00 AM', event: 'Doors open' },
-  { time: '12:00 PM', event: 'Opening ceremony' },
-  { time: '12:30 PM', event: 'Lunch' },
-  { time: '1:00 PM', event: 'Hacking starts!' },
-  { time: '2:00 PM', event: 'Workshop 1' },
-  { time: '4:00 PM', event: 'Activity 1' },
-  { time: '4:00 PM', event: 'Workshop 2' },
-  { time: '6:00 PM', event: 'dinner' }
+  { time: '10:45 AM', event: 'Doors open' },
+  { time: '11:15 PM', event: 'Kickoff Challenge' },
+  { time: '12:00 PM', event: 'Opening Ceremony' },
+  { time: '12:30 PM', event: 'Team formation & Brainstorming' },
+  { time: '1:00 PM', event: 'Lunch' },
+  { time: '1:30 PM', event: 'Hacking Starts!' },
+  { time: '1:45 PM', event: 'Starter Project Workshop*' },
+  { time: '3:00 PM', event: 'Cybersecurity Workshop*' },
+  { time: '4:00 PM', event: 'Suprise Event*' },
+  { time: '6:00 PM', event: 'Dinner!' },
+  { time: '6:30 PM', event: 'Hacking Continues' },
+  { time: '9:00 PM', event: 'End of Day Game*' },
+  { time: '9:10 PM', event: 'Closing' }
 ]
 
 const scheduleday2 = [
-  { time: '8:00 AM', event: 'Breakfast' },
-  { time: '10:30 AM', event: 'Demos w/ judges' },
-  { time: '12:00 PM', event: 'Closing ceremony' }
+  { time: '11:00 AM', event: 'Doors Open' },
+  { time: '11:30 AM', event: 'Final Coding' },
+  { time: '1:00 PM', event: 'Project Demos and Judging' },
+  { time: '2:00 PM', event: 'Awards Ceremony & Prizes' },
+  { time: '2:30 PM', event: 'Closing Ceremony' }
 ]
 
 //const Map = dynamic(() => import('../components/Map'), { ssr: false })
@@ -127,7 +134,7 @@ export default function ExampleCity() {
                 margin: '8%'
               }}
             >
-              Build stupid s#1t, get stupid prizes.
+              Build stupid stuff, get stupid prizes.
             </Heading>
           </Box>
           <Box
@@ -169,14 +176,14 @@ export default function ExampleCity() {
               sx={{
                 fontFamily: 'p22-stanyan',
                 mx: '8%',
-                p: 0,
+                p: 1.5,
                 wordBreak: 'keep-all',
                 whiteSpace: 'nowrap',
                 width: 'max-content',
                 fontSize: ['1.2em', '1.4em']
               }}
             >
-              Venue TBA
+              PAST Foundation - Upper Arlington
             </Heading>
           </Box>
         </Box>
@@ -491,7 +498,7 @@ export default function ExampleCity() {
           >
             Day 1 (SATURDAY)
           </Heading>
-
+        
           {schedinprog.map((item, i) => (
             <div
               style={{
@@ -510,8 +517,54 @@ export default function ExampleCity() {
                   fontFamily: 'p22-stanyan'
                 }}
               >
-                {item.event}
+                {schedule.map((item, index) => (
+    <div
+      key={index}
+      style={{
+        marginBottom: '2.5rem', // Adds space between events
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+      }}
+    >
+      <span
+        style={{
+          fontWeight: 'bold',
+          textAlign: 'left',
+        }}
+      >
+        {item.event}
+      </span>
+
+      <span
+        style={{
+          flexGrow: 1, // Makes the dots container stretch to fill available space
+          textAlign: 'right',
+          whiteSpace: 'nowrap',
+          marginLeft: '1rem', // Adds space between event name and dots
+        }}
+      >
+        {'.'.repeat(20)} {/* Adjust the number of dots here */}
+      </span>
+
+      <span
+        style={{
+          fontWeight: 'normal',
+          textAlign: 'right',
+          minWidth: '110px',
+        }}
+      >
+       {item.time}
+      </span>
+    </div>
+  ))}
+
+<div style={{ marginLeft:'175px', marginTop: '10px', fontStyle: 'italic' }}>
+  *Optional Events
+</div>
               </Heading>
+
               <Box
                 sx={{
                   mx: 2,
@@ -590,7 +643,48 @@ export default function ExampleCity() {
                   fontFamily: 'p22-stanyan'
                 }}
               >
-                {item.event}
+                {scheduleday2.map((item, index) => (
+    <div
+      key={index}
+      style={{
+        marginBottom: '2.5rem', // Adds space between events
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+      }}
+    >
+      <span
+        style={{
+          fontWeight: 'bold',
+          textAlign: 'left',
+        }}
+      >
+        {item.event}
+      </span>
+
+      <span
+        style={{
+          flexGrow: 1, // Makes the dots container stretch to fill available space
+          textAlign: 'right',
+          whiteSpace: 'nowrap',
+          marginLeft: '1rem', // Adds space between event name and dots
+        }}
+      >
+        {'.'.repeat(20)} {/* Adjust the number of dots here */}
+      </span>
+
+      <span
+        style={{
+          fontWeight: 'normal',
+          textAlign: 'right',
+          minWidth: '110px',
+        }}
+      >
+       {item.time}
+      </span>
+    </div>
+  ))}
               </Heading>
               <Box
                 sx={{
